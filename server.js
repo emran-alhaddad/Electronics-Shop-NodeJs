@@ -7,4 +7,6 @@ server.set('views', 'View');
 
 server.listen(PORT, console.log(`Server started on port ${PORT}`));
 
-server.get("/", (_, res) => res.render('home'));
+server.get("/", (req, res) => {
+    res.render('home');
+})
