@@ -6,3 +6,7 @@ server.use(express.static('Assets'));
 server.set('views', 'View');
 
 server.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+server.get("/", (req, res) => {
+    res.render('home');
+})
