@@ -32,19 +32,21 @@ server.get("/contact", (req, res) => {
 })
 
 server.get("/products?:cat", (req, response) => {
-    console.log(req.query.cat)
-    fetch('https://dummyjson.com/products/category/' + req.query.cat)
+    var url = 'https://dummyjson.com/products';
+    if (!req.query.cat)
+        url += '?select=title,price,rating,discountPercentage,thumbnail';
+
+    else
+        url += '/category/' + req.query.cat;
+
+    fetch(url)
         .then(res => res.json())
         .then(res => response.render('product-list', { Products: res.products }))
 })
 
 
 server.get("/products/:p_id?", (req, response) => {
-    if (!req.params.p_id) {
-        fetch('https://dummyjson.com/products?select=title,price,rating,discountPercentage,thumbnail')
-            .then(res => res.json())
-            .then(res => response.render('product-list', { Products: res.products }))
-    } else {
+    if (req.params.p_id) {
 
         fetch('https://dummyjson.com/products?limit=10&skip=10&select=title,price,rating,discountPercentage,thumbnail')
             .then(res1 => res1.json())
