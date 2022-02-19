@@ -39,15 +39,18 @@ server.get("/products?:cat", (req, response) => {
     else
         url += '/category/' + req.query.cat;
 
-    fetch(url)
-        .then(res => res.json())
-        .then(res => response.render('product-list', { Products: res.products }))
+    fetch('https://dummyjson.com/products/categories')
+        .then(r2 => r2.json())
+        .then(r2 => {
+            fetch(url)
+                .then(res => res.json())
+                .then(res => response.render('product-list', { Products: res.products, Categories: r2 }))
+        });
 })
 
 
 server.get("/products/:p_id?", (req, response) => {
     if (req.params.p_id) {
-
         fetch('https://dummyjson.com/products?limit=10&skip=10&select=title,price,rating,discountPercentage,thumbnail')
             .then(res1 => res1.json())
             .then(r1 => {
