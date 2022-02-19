@@ -31,23 +31,43 @@ server.get("/contact", (req, res) => {
     res.render('contact');
 })
 
-server.get("/products?:p_id", (req, response) => {
-    if (!req.query.p_id) {
+server.get("/products?:cat", (req, response) => {
+    console.log(req.query.cat)
+    fetch('https://dummyjson.com/products/category/' + req.query.cat)
+        .then(res => res.json())
+        .then(res => response.render('product-list', { Products: res.products }))
+})
+
+
+server.get("/products/:p_id?", (req, response) => {
+    if (!req.params.p_id) {
         fetch('https://dummyjson.com/products?select=title,price,rating,discountPercentage,thumbnail')
             .then(res => res.json())
             .then(res => response.render('product-list', { Products: res.products }))
     } else {
 
         fetch('https://dummyjson.com/products?limit=10&skip=10&select=title,price,rating,discountPercentage,thumbnail')
-            .then(res => res.json())
-            .then(r => {
-                fetch('https://dummyjson.com/products/' + req.query.p_id)
-                    .then(res => res.json())
-                    .then(res => response.render('product-details', { Product: res, Products: r.products }))
-            })
+            .then(res1 => res1.json())
+            .then(r1 => {
+                fetch('https://dummyjson.com/products/categories')
+                    .then(r2 => r2.json())
+                    .then(r2 => {
+
+                        fetch('https://dummyjson.com/products/' + req.params.p_id)
+                            .then(res2 => res2.json())
+                            .then(r3 => response.render('product-details', { Product: r3, Products: r1.products, Categories: r2 }))
+                    })
+            });
 
     }
+
 })
+
+
+
+
+
+
 
 server.get("/account", (req, res) => {
     res.render('account');

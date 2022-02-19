@@ -79,7 +79,7 @@
                                             <div class="col-md-4">
                                                 <div class="product-item">
                                                     <div class="product-title">
-                                                        <a href="/products?p_id=<%= item.id %>">
+                                                        <a href="/products/<%= item.id %>">
                                                             <%= item.title %>
                                                         </a>
                                                         <div class="ratting">
@@ -88,13 +88,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-image">
-                                                        <a href="/products?p_id=<%= item.id %>">
+                                                        <a href="/products/<%= item.id %>">
                                                             <img src="<%= item.thumbnail %>" alt="Product Image">
                                                         </a>
                                                         <div class="product-action">
                                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                                            <a href="/products?p_id=<%= item.id %>">
+                                                            <a href="/products/<%= item.id %>">
                                                                 <i class="fa fa-search"></i></a>
                                                         </div>
                                                     </div>
