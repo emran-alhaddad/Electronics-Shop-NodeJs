@@ -10,13 +10,17 @@ server.set('views', 'View');
 
 server.listen(PORT, console.log(`Server started on port ${PORT}`));
 
-
+function fechHome(req, response) {
+    fetch('https://dummyjson.com/products?limit=30&skip=15&select=title,price,rating,discountPercentage,thumbnail')
+        .then(res => res.json())
+        .then(res => response.render('home', { Products: res.products }))
+}
 server.get("/", (req, res) => {
-    res.render('home');
+    fechHome(req, res);
 })
 
 server.get("/home", (req, res) => {
-    res.render('home');
+    fechHome(req, res);
 })
 
 server.get("/favorite", (req, res) => {
