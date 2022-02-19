@@ -52,7 +52,7 @@
                                                             </h2>
                                                         </div>
                                                         <div class="ratting">
-                                                            <% for (i=0 ; i < Math.round(item.rating); i++){ %>
+                                                            <% for (i=0 ; i < Math.round(Product.rating); i++){ %>
                                                                 <i class="fa fa-star"></i>
                                                                 <% }%>
                                                         </div>
@@ -194,7 +194,7 @@
                                                                     <%= item.title %>
                                                                 </a>
                                                                 <div class="ratting">
-                                                                    <% for (i=0 ; i < Math.round(item.rating); i++){ %>
+                                                                    <% for (i=0 ; i < Math.round(Product.rating); i++){ %>
                                                                         <i class="fa fa-star"></i>
                                                                         <% }%>
                                                                 </div>
@@ -253,7 +253,7 @@
                                                             <a href="/products/<%= item.id %>">
                                                                 <%= item.title %>
                                                             </a>
-                                                            <% for (i=0 ; i < Math.round(item.rating); i++){ %>
+                                                            <% for (i=0 ; i < Math.round(Product.rating); i++){ %>
                                                                 <i class="fa fa-star"></i>
                                                                 <% }%>
                                                         </div>
